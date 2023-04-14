@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    //변수 -> 이동
+   
 
     [SerializeField] float speed;
 
     float axisH, axisV;
     Rigidbody2D myrigid;
-
+    
+    Animator myAnimator;
+    float angleZ = -90;
+    string upAnim = "PlayerUp";
+    string downAnim = "PlayerDown";
+    string rightAnim = "PlayerRight";
+    string leftAnim = "PlayerLeft";
+    
+    string nowAnimation; //now animation
+    string oldAnimation; //old animation
 
     void Start()
     {
@@ -20,7 +29,13 @@ public class PlayerMove : MonoBehaviour
   
     void Update()
     {
-        axisH = Input.GetAxisRaw("Horiaontal");
+        axisH = Input.GetAxisRaw("Horizontal");
         axisV = Input.GetAxisRaw("Vertical");
+    }
+    
+    
+        private void FixedUpdate()
+    {
+        myRigid.velocity = new Vector2(axisH, axisV) * speed;
     }
 }
